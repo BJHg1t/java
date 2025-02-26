@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 @FeignClient(name = "exampleClient", url = "${feign-data.url}")
 // OpenFeign 라이브러리를 통해 HTTP 클라이언트를 정의하는 어노테이션
-// url에 직접 url 입력해도 됨
+// url에 직접 url을 입력해도 됨
 // FeignClient가 interface의 구현체를 구현해 놓았음
 public interface ExampleClient {
 
