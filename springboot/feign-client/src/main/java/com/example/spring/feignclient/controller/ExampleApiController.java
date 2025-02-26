@@ -5,8 +5,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-// 서버간 통신할 때 json으로 왔다갔다 하면 restcontroller
-// 화면 이동할 때 controller
+// 서버간 통신할 때 JSON형식을 이용하면 @RestController
+// 화면 이동할 때 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/feign/data")
 public class ExampleApiController {

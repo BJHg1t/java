@@ -11,25 +11,27 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Slf4j // 서버 올릴 때는 빼야 함
-@RestController // 스프링 자체가 관리하겠다
-@RequestMapping("/api/data")
+@Slf4j // log를 찍을 수 있게 해주는 어노테이션, 서버 올릴 때는 서버의 보안 및 성능에 영향때문에 빼야 한다.
+@RestController // @Component의 특성을 포함하기에 Spring이 bean을 통해 자체가 관리한다.
+@RequestMapping("/api/data") // HTTP 요청 URL과 메서드를 매핑하는 어노테이션
 public class DataController {
     // 공공 data 서버
     private Map<Long, DataResponseDTO> dataStore = new HashMap<>();
     private Long idCnt = 1L;
 
     // 초기 데이터를 추가하는 메서드
-    @PostConstruct
+    @PostConstruct // bean이 초기화 된 후 자동으로 호출되는 메서드를 지정하는 어노테이션, 주로 초기화, 초기값을 넣는데 사용한다.
     public void initDataSource() {
-    // 동일한 메서드, new를 사용했을 때 name에 value값을 넣는 등 실수할 수 있음
-        /*dataStore.put(
+        /*
+        동일한 메서드, new를 사용했을 때 name에 value값을 넣는 등 실수할 수 있음
+        dataStore.put(
                 idCnt++, DataResponseDTO.builder()
                             .id(1L)
                             .name("Item 1")
                             .value(100)
                         .build()
-        );*/
+        );
+        */
         dataStore.put(idCnt++, new DataResponseDTO(1L,"Item 1", 100));
         dataStore.put(idCnt++, new DataResponseDTO(1L,"Item 2", 200));
         dataStore.put(idCnt++, new DataResponseDTO(1L,"Item 3", 300));

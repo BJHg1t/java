@@ -7,9 +7,9 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@Builder
-// @NoArgsConstructor 기본 생성자를 만드는 것
-@AllArgsConstructor // 모든 arg를 가진 생성자를 만드는 것
+@Builder // builder() 패턴을 구현하기 위한 어노테이션
+// @NoArgsConstructor 기본 생성자를 만드는 어노테이션
+@AllArgsConstructor // 모든 arg(인수)를 가진 생성자를 만드는 어노테이션
 public class DataResponseDTO {
     private Long id;
     private String name;
