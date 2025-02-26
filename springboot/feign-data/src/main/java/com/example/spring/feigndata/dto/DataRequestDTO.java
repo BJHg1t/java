@@ -5,5 +5,5 @@ import lombok.Getter;
 @Getter
 public class DataRequestDTO {
     private String name;
-    private String value;
+    private int value;
 }
