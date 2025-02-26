@@ -25,4 +25,21 @@ public class ExampleService {
                         .build()
         );
     }
+
+    public String updateDataById(Long id, String name, int value) {
+        return exampleClient.updateData(id,
+                DataRequestDTO.builder()
+                        .name(name)
+                        .value(value)
+                        .build()
+        );
+    }
+
+    public String deleteDataById(Long id) {
+        return exampleClient.deleteData(id);
+    }
+
+    public String getAll() {
+        return exampleClient.getAllData();
+    }
 }
