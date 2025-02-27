@@ -3,11 +3,10 @@ package com.example.spring.essentials.filter;
 import jakarta.servlet.*;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
-@Component // Spiring Container가 이 흐름을 관리하도록 하기 위해서 사용
+//@Component : LoggingFilter를 바로 사용할 때 Spiring Container가 흐름을 관리하도록 하기 위해서 사용
 public class LoggingFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
