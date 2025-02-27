@@ -26,4 +26,12 @@ public interface ExampleClient {
 
     @GetMapping("/api/data")
     String getAllData();
+
+    /*
+    @DeleteMapping("/api/data/{id}")
+    String deleteData(@PathVariable("id") Long id);
+
+    @GetMapping("/api/data/all")
+    List<DataResponseDTO> getAllData();
+     */
 }

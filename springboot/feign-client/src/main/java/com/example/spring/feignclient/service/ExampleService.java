@@ -42,4 +42,14 @@ public class ExampleService {
     public String getAll() {
         return exampleClient.getAllData();
     }
+
+    /*
+    public String deleteDataById(Long id) {
+        return exampleClient.deleteData(id);
+    }
+
+    public List<DataResponseDTO> getAllData() {
+        return exampleClient.getAllData();
+    }
+    */
 }
