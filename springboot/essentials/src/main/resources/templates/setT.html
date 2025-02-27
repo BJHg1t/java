@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>쿠키 과제</title>
+</head>
+<body>
+<h1>쿠키 설정</h1>
+
+<form action="/sign2" method="post">
+  <label for="id">ID:</label>
+  <input type="text" id="id" name="id" required />
+  <label for="pw">Password:</label>
+  <input type="text" id="pw" name="pw" required />
+  <label for="username">사용자 이름:</label>
+  <input type="text" id="username" name="username" required />
+  <button type="submit">회원 가입</button>
+</form>
+<form action="/login2" method="post">
+  <label for="id2">ID:</label>
+  <input type="text" id="id2" name="id" required />
+  <label for="pw2">Password:</label>
+  <input type="text" id="pw2" name="pw" required />
+  <button type="submit">로그인</button>
+</form>
+</body>
+</html>
