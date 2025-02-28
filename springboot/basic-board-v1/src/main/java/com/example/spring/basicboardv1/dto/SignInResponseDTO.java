@@ -1,13 +1,12 @@
 package com.example.spring.basicboardv1.dto;
 
+import lombok.Builder;
 import lombok.Getter;
-import lombok.ToString;
 
 @Getter
-@ToString
-public class SignUpRequsetDTO {
+@Builder
+public class SignInResponseDTO {
+    private boolean success;
     private String userId;
-    private String password;
     private String userName;
-
 }
