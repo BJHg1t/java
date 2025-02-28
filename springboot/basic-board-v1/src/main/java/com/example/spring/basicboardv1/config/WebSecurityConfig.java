@@ -29,7 +29,7 @@ public class WebSecurityConfig {
             CustomAuthenticationFailureHandler failureHandler
     ) throws Exception {
         http
-                .csrf(AbstractHttpConfigurer::disable) // 신뢰할 수 있는 사용자를 사칭해 웹사이트에 원치 않는 명령을 보내는 공격햣
+                .csrf(AbstractHttpConfigurer::disable) // 신뢰할 수 있는 사용자를 사칭해 웹사이트에 원치 않는 명령을 보내는 공격함
                 .authorizeHttpRequests(
                         authorizeRequests -> authorizeRequests
                                 .requestMatchers(
