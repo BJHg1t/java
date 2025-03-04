@@ -18,7 +18,7 @@ public class WebSecurityConfig {
     public WebSecurityCustomizer webSecurityCustomizer() {
         return (web) -> web.ignoring()
                 .requestMatchers(
-                        "/static/**", "/css/**", "/js/**"
+                        "/static/**", "/css/**", "/js/**" // 모든 하위 경로인건 맞지만 파일에 대한 것이 아님, 폴더는 또 따로 잡아줘야 함
                 );
     }
 
@@ -57,4 +57,3 @@ public class WebSecurityConfig {
         return new BCryptPasswordEncoder();
     }
 }
-
