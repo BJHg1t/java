@@ -1,5 +1,7 @@
 package com.example.spring.v1practice.controller;
 
+import com.example.spring.v1practice.dto.SignInRequestDTO;
+import com.example.spring.v1practice.dto.SignInResponseDTO;
 import com.example.spring.v1practice.dto.SignUpRequestDTO;
 import com.example.spring.v1practice.dto.SignUpResponseDTO;
 import com.example.spring.v1practice.service.MemberService;
@@ -25,5 +27,9 @@ public class MemberApiController {
     }
 
     @PostMapping("/login")
-    public
+    public SignInResponseDTO login(@RequestBody SignInRequestDTO signInRequestDTO) {
+        System.out.println("SignInRequestDTO :: " + signInRequestDTO);
+        return SignInResponseDTO.builder()
+                .build();
+    }
 }
