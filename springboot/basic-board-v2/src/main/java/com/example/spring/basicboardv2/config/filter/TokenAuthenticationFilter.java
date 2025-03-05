@@ -42,11 +42,11 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
         filterChain.doFilter(request, response);
     }
 
-    private  String resolveToken(HttpServletRequest request) {
+    private String resolveToken(HttpServletRequest request) {
         String bearerToken = request.getHeader(HEADER_AUTHORIZATION);
 
         if (bearerToken != null && bearerToken.startsWith(TOKEN_PREFIX)) {
-            return bearerToken.substring(TOKEN_PREFIX.length()); // 앞부분 잘라서 token에 대한 객체만 받음
+            return bearerToken.substring(TOKEN_PREFIX.length()); // 앞부분 잘라서 token에 대한 정보만 받음, 인증할 때 "Bearer " 때문에 문제 생김
         }
 
         return null;
