@@ -3,6 +3,7 @@ package com.example.spring.basicboardv2.config.jwt;
 import com.example.spring.basicboardv2.model.Member;
 import com.example.spring.basicboardv2.type.Role;
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Header;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
@@ -98,6 +99,23 @@ public class TokenProvider {
         
         // UsernamePasswordAuthenticationToken 생성 : 시큐리티가 이해할 수 있는 토큰
         return new UsernamePasswordAuthenticationToken(userDetails, token, authorities);
+    }
+
+    // JWT 유효성 검사
+    public int validToken(String token) {
+        try {
+            getClaims(token);
+
+            return 1;
+        } catch (ExpiredJwtException e) {
+            // 토큰이 만료된 경우
+            log.info("Token이 만료되었습니다.");
+            return 2;
+        } catch (Exception e) {
+            // 복호화 과정에서 에러가 나면 유효하지 않은 토큰 > 탈취하려고 하거나, 다른 토큰을 가지고 왔을 때
+            System.out.println("Token 복호화 에러 : " + e.getMessage());
+            return 3;
+        }
     }
 
 }
