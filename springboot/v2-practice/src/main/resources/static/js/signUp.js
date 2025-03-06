@@ -22,6 +22,9 @@ $(document).ready(() => {
             dataType: 'json',
             success: (response) => {
                 alert('회원가입이 성공했습니다.\n로그인해주세요.');
+                if (response.successed){
+                    window.location.href = '/member/login';
+                }
             },
             error: (error) => {
                 console.log('오류발생 : ', error);
