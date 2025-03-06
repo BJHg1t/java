@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: v2-practice
+  datasource:
+    url: jdbc:mysql://localhost:3306/practice?useSSL=false&serverTimezone=UTC&characterEncoding=UTF-8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 1234
+server:
+  port: 1001
+mybatis:
+  mapper-locations: classpath:mappers/*.xml
+  type-aliases-package: com.example.spring.v2practice.model
+jwt:
+  issuer: test@gmail.com
+  secret_key: pdNfxXrKLsTOxTZHUVjzCwBddCpns9W9zuxagsAWL3Fq30RPzjw35JGP52T9kyFTebNnWzsT82QpbVXINK+4xw==

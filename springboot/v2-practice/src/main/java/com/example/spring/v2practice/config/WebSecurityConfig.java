@@ -1,6 +1,6 @@
-package com.example.spring.basicboardv2.config;
+package com.example.spring.v2practice.config;
 
-import com.example.spring.basicboardv2.config.filter.TokenAuthenticationFilter;
+import com.example.spring.v2practice.config.filter.TokenAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -36,30 +36,27 @@ public class WebSecurityConfig {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(
-                        session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS) // 세션을 비활성화, 로그인 정보를 쿠키게 담기 위해서
+                        session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 )
                 .authorizeHttpRequests(
                         auth -> auth
                                 .requestMatchers(
-                                        new AntPathRequestMatcher("/", "GET"),
                                         new AntPathRequestMatcher("/member/join", "GET"),
                                         new AntPathRequestMatcher("/member/login", "GET"),
                                         new AntPathRequestMatcher("/join", "POST"),
-                                        new AntPathRequestMatcher("/login", "POST"),
-                                        new AntPathRequestMatcher("/logout", "POST")
+                                        new AntPathRequestMatcher("/login", "POST")
                                 )
                                 .permitAll()
                                 .anyRequest().authenticated()
                 )
                 .logout(AbstractHttpConfigurer::disable)
-                // JWT 필터 추가
-                .addFilterBefore(tokenAuthenticationFilter, UsernamePasswordAuthenticationFilter.class) // 시큐리티의 인증 필터보다 앞에 설정해서 인증을 더 할 필요없게 만듬 > 로그인 하기 전에
+                .addFilterBefore(tokenAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
         ;
 
         return http.build();
     }
 
-    @Bean // 인증을 진행하는 manager 반환 > 인증을 진행한다 = 로그인 한다
+    @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
         return configuration.getAuthenticationManager();
     }
