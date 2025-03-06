@@ -25,8 +25,10 @@ $(document).ready(() => {
             contentType: 'application/json; charset=urf-8', // 전송 데이터의 타입, json으로 보내겠다 알려주는 것
             dataType: 'json', // 서버에서 받을 데이터의 타입
             success: (response) => {
-                console.log(response);
                 alert('회원가입이 성공했습니다.\n로그인해주세요.');
+                if (response.successed){
+                    window.location.href = '/member/login';
+                }
             },
             error: (error) => {
                 console.log('오류발생 : ', error);
