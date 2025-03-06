@@ -99,7 +99,7 @@ public class TokenProvider {
         // UserDetails 객체 생성
         UserDetails userDetails = new User(claims.getSubject(), "", authorities);
         
-        // UsernamePasswordAuthenticationToken 생성 : 시큐리티가 이해할 수 있는 토큰
+        // UsernamePasswordAuthenticationToken 생성 : 시큐리티가 이해할 수 있는 토큰 > authention 객체(인증 객체)를 만들었다
         return new UsernamePasswordAuthenticationToken(userDetails, token, authorities);
     }
 

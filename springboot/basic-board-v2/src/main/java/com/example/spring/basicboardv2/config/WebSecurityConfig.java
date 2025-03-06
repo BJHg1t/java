@@ -37,7 +37,7 @@ public class WebSecurityConfig {
                 )
                 .logout(AbstractHttpConfigurer::disable)
                 // JWT 필터 추가
-                .addFilterBefore(tokenAuthenticationFilter, UsernamePasswordAuthenticationFilter.class) // 시큐리티 필터보다 앞에 설정해서 인증을 더 할 필요없게 만듬
+                .addFilterBefore(tokenAuthenticationFilter, UsernamePasswordAuthenticationFilter.class) // 시큐리티의 인증 필터보다 앞에 설정해서 인증을 더 할 필요없게 만듬 > 로그인 하기 전에
 
         ;
 
