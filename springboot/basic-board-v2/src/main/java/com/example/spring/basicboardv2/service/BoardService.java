@@ -17,16 +17,6 @@ public class BoardService {
     private final BoardMapper boardMapper;
     private final FileService fileService;
 
-    public List<Article> getBoardArticles(int page, int size) {
-        int offset = (page - 1) * size; // 페이지는 1부터 시작 offset 계산, 컴퓨터는 0시작
-        return boardMapper.getArticles(
-                Paging.builder()
-                        .offset(offset)
-                        .size(size)
-                        .build()
-        );
-    }
-
     @Transactional // 일관성, 아예 되거나 아예 안되거나 (파일 생성, DB에 저장 중에 하나라도 안되면 전체적으로 롤백 ex)은행 업무)
     public void saveArticle(String userId, String title, String content, MultipartFile file) {
         String path = null;
@@ -40,6 +30,16 @@ public class BoardService {
                         .content(content)
                         .userId(userId)
                         .filePath(path)
+                        .build()
+        );
+    }
+
+    public List<Article> getBoardArticles(int page, int size) {
+        int offset = (page - 1) * size; // 페이지는 1부터 시작 offset 계산, 컴퓨터는 0시작
+        return boardMapper.getArticles(
+                Paging.builder()
+                        .offset(offset)
+                        .size(size)
                         .build()
         );
     }

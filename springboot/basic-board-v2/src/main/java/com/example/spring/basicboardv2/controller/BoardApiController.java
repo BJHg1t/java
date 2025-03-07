@@ -16,6 +16,17 @@ public class BoardApiController {
 
     private final BoardService boardService;
 
+@PostMapping
+    public void saveArticle(
+            @RequestParam("title") String title,
+            @RequestParam("content") String content,
+            @RequestParam("hiddenUserId") String userId,
+            @RequestParam("file") MultipartFile file
+    ) {
+        // String userId, String title, String content, MultipartFile file
+        boardService.saveArticle(userId, title, content, file);
+    }
+
     @GetMapping
     public BoardListResponseDTO getBoards(
             @RequestParam(name = "page", defaultValue = "1") int page,
@@ -32,17 +43,6 @@ public class BoardApiController {
                 .articles(articles)
                 .last(last) // true면 이동x
                 .build();
-    }
-
-    @PostMapping
-    public void saveArticle(
-            @RequestParam("title") String title,
-            @RequestParam("content") String content,
-            @RequestParam("hiddenUserId") String userId,
-            @RequestParam("file") MultipartFile file
-    ) {
-        // String userId, String title, String content, MultipartFile file
-        boardService.saveArticle(userId, title, content, file);
     }
 
 }
