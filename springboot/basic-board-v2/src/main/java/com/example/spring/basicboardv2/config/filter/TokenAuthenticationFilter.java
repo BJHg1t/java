@@ -30,7 +30,7 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
         if (token != null && tokenProvider.validToken(token) == 1) {
             // 토큰이 유효할 경우, 인증 정보를 설정
             Authentication authentication = tokenProvider.getAuthentication(token);
-            SecurityContextHolder.getContext().setAuthentication(authentication); // 인증 정보를 넣는 것, 응답이 끝나면 사라짐
+            SecurityContextHolder.getContext().setAuthentication(authentication); // 인증 정보를 넣는 것, 인증 객체는 응답이 끝나면 사라짐
 
             Member member = tokenProvider.getTokenDetails(token);
             request.setAttribute("member", member);

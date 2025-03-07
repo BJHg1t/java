@@ -2,10 +2,7 @@ package com.example.spring.basicboardv2.config.jwt;
 
 import com.example.spring.basicboardv2.model.Member;
 import com.example.spring.basicboardv2.type.Role;
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.ExpiredJwtException;
-import io.jsonwebtoken.Header;
-import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -55,6 +52,7 @@ public class TokenProvider {
                 .claim("id", member.getId()) // 사용자가 넣고 싶은 data : claim > payload에 저장, 탈취 생각해서 개인정보 넣으면 안됨
                 .claim("role", member.getRole().name()) // enum 숫자로 관리
                 .claim("userName", member.getUserName())
+                .signWith(getSecretKey(), SignatureAlgorithm.HS512) // 서명
                 .compact();
     }
 
