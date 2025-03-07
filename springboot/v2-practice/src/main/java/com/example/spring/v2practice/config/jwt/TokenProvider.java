@@ -2,10 +2,7 @@ package com.example.spring.v2practice.config.jwt;
 
 import com.example.spring.v2practice.model.Member;
 import com.example.spring.v2practice.type.Role;
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.ExpiredJwtException;
-import io.jsonwebtoken.Header;
-import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -35,7 +32,7 @@ public class TokenProvider {
         Date now = new Date();
         return makeToken(
                 member,
-                new Date(now.getTime()+expiredAt.toMillis())
+                new Date(now.getTime() + expiredAt.toMillis())
         );
     }
 
@@ -52,6 +49,7 @@ public class TokenProvider {
                 .claim("id", member.getId())
                 .claim("userName", member.getUserName())
                 .claim("role", member.getRole())
+                .signWith(getSecretKey(), SignatureAlgorithm.HS512)
                 .compact();
     }
 
