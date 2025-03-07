@@ -39,7 +39,7 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
             return; // 더 이상 진행하지 않음
         }
 
-        filterChain.doFilter(request, response);
+        filterChain.doFilter(request, response); // 다음 단계로 진행시키는 것 : MemberApiController /user/info
     }
 
     private String resolveToken(HttpServletRequest request) {
