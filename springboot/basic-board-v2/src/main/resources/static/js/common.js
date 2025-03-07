@@ -17,6 +17,7 @@ let setupAjax = () => {
     })
 }
 
+// 토큰을 분해해서 얻은 정보
 let getUserInfo = () => {
     return new Promise((resolve, reject) => {
         $.ajax({

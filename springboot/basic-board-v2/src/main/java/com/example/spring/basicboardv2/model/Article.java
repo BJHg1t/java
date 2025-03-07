@@ -13,6 +13,6 @@ public class Article {
     private String content;
     private String userId;
     private String filePath;
-    private LocalDateTime createTime;
-    private LocalDateTime updateTime;
+    private LocalDateTime created;
+    private LocalDateTime updated;
 }
