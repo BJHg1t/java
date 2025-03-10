@@ -11,9 +11,9 @@ public interface WeatherClient {
             @RequestParam("serviceKey") String serviceKey,
             @RequestParam("numOfRows") int numOfRows,
             @RequestParam("pageNo") int pageNo,
-            @RequestParam("dataType") String  dataType,
-            @RequestParam("base_date") String  base_date,
-            @RequestParam("base_time") String  base_time,
+            @RequestParam("dataType") String dataType,
+            @RequestParam("base_date") String baseDate,
+            @RequestParam("base_time") String baseTime,
             @RequestParam("nx") int nx,
             @RequestParam("ny") int ny
     );

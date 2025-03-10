@@ -39,11 +39,6 @@ public class ExampleApiController {
     }
 
     /*
-    @DeleteMapping("/{id}")
-    public String deleteData(@PathVariable Long id) {
-        return exampleService.deleteDataById(id);
-    }
-
     @GetMapping("/all")
     public List<DataResponseDTO> getAllData() {
         return exampleService.getAllData();

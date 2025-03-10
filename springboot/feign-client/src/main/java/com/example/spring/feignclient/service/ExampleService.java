@@ -44,10 +44,6 @@ public class ExampleService {
     }
 
     /*
-    public String deleteDataById(Long id) {
-        return exampleClient.deleteData(id);
-    }
-
     public List<DataResponseDTO> getAllData() {
         return exampleClient.getAllData();
     }
