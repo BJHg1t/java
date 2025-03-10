@@ -37,7 +37,9 @@ let loadBoardDetail = () => {
 
                 let fileElement = `
                             <li>
-                                <a href="/api/board/file/download/${fileName}">${fileName}</a> <!-- 다운로드 링크, ajax가 아닌 a태그라서 헤더에 토큰 없어서 정책적으로 허용시켜야 함 --> 
+                                <!-- 다운로드 링크
+                                 작동 방식이 ajax가 아닌 <a>라서 헤더에 토큰 없기 때문에 security 정책적으로 허용시켜야 함 --> 
+                                <a href="/api/board/file/download/${fileName}">${fileName}</a>
                             </li>`;
                 $('#fileList').append(fileElement);
             } else {
