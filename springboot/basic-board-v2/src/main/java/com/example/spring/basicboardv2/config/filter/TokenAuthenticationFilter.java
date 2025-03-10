@@ -15,7 +15,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 
-// 요청할 때 마다 한번씩 작동하는 필터
+// 요청할 때마다 한번씩 작동하는 필터
 @Slf4j
 @Component
 @RequiredArgsConstructor
