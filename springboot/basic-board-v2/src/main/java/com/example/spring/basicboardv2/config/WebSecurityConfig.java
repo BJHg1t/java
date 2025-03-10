@@ -4,6 +4,7 @@ import com.example.spring.basicboardv2.config.filter.TokenAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -41,10 +42,14 @@ public class WebSecurityConfig {
                 .authorizeHttpRequests(
                         auth -> auth
                                 .requestMatchers(
+                                        // 화면 이동
                                         new AntPathRequestMatcher("/", "GET"),
                                         new AntPathRequestMatcher("/member/join", "GET"),
                                         new AntPathRequestMatcher("/member/login", "GET"),
                                         new AntPathRequestMatcher("/write", "GET"),
+                                        new AntPathRequestMatcher("/detail", HttpMethod.GET.name()),
+                                        // 기능
+                                        new AntPathRequestMatcher("/refresh-token", HttpMethod.POST.name()),
                                         new AntPathRequestMatcher("/join", "POST"),
                                         new AntPathRequestMatcher("/login", "POST"),
                                         new AntPathRequestMatcher("/logout", "POST")

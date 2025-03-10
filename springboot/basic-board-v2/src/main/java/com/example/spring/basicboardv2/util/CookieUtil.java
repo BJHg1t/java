@@ -31,4 +31,17 @@ public class CookieUtil {
             }
         }
     }
+
+    public static String getCookieValue(HttpServletRequest request, String name) {
+        if (request.getCookies() != null) {
+            for (Cookie cookie : request.getCookies()) {
+                // 하드코딩.equals()를 했을 때 값을 비교하기 더 좋음, cookie.getName()이 null이면 cookie.getName().equals() 오류가 생기고 오류를 없애기 위해 if문 추가해야 해서 코드가 길어짐
+                if (name.equals(cookie.getName())) {
+                    return cookie.getValue();
+                }
+            }
+        }
+
+        return null;
+    }
 }

@@ -47,4 +47,8 @@ public class BoardService {
     public int getTotalArticleCnt() {
         return boardMapper.getArticleCnt();
     }
+
+    public Article getBoardDetail(Long id) {
+        return boardMapper.getArticleById(id);
+    }
 }

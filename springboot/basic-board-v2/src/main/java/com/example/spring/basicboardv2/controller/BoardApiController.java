@@ -1,5 +1,6 @@
 package com.example.spring.basicboardv2.controller;
 
+import com.example.spring.basicboardv2.dto.BoardDetailResponseDTO;
 import com.example.spring.basicboardv2.dto.BoardListResponseDTO;
 import com.example.spring.basicboardv2.model.Article;
 import com.example.spring.basicboardv2.service.BoardService;
@@ -16,7 +17,7 @@ public class BoardApiController {
 
     private final BoardService boardService;
 
-@PostMapping
+    @PostMapping
     public void saveArticle(
             @RequestParam("title") String title,
             @RequestParam("content") String content,
@@ -43,6 +44,12 @@ public class BoardApiController {
                 .articles(articles)
                 .last(last) // true면 이동x
                 .build();
+    }
+
+    @GetMapping("/{id}")
+    public BoardDetailResponseDTO getBoardDetail(@PathVariable Long id) {
+        return boardService.getBoardDetail(id)
+                .toBoardDetailResponseDTO();
     }
 
 }
