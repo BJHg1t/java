@@ -7,17 +7,21 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @RequiredArgsConstructor
+@EnableMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig {
 
     private final TokenAuthenticationFilter tokenAuthenticationFilter;
@@ -41,6 +45,7 @@ public class WebSecurityConfig {
                 )
                 .authorizeHttpRequests(
                         auth -> auth
+//                                .requestMatchers("/api/board/**").hasRole("ADMIN")
                                 .requestMatchers(
                                         // 화면 이동
                                         new AntPathRequestMatcher("/", "GET"),
@@ -48,11 +53,13 @@ public class WebSecurityConfig {
                                         new AntPathRequestMatcher("/member/login", "GET"),
                                         new AntPathRequestMatcher("/write", "GET"),
                                         new AntPathRequestMatcher("/detail", HttpMethod.GET.name()),
+                                        new AntPathRequestMatcher("/access-denied", HttpMethod.GET.name()),
                                         // 기능
                                         new AntPathRequestMatcher("/refresh-token", HttpMethod.POST.name()),
                                         new AntPathRequestMatcher("/join", "POST"),
                                         new AntPathRequestMatcher("/login", "POST"),
-                                        new AntPathRequestMatcher("/logout", "POST")
+                                        new AntPathRequestMatcher("/logout", "POST"),
+                                        new AntPathRequestMatcher("/api/board/file/download/*", HttpMethod.GET.name())
                                 )
                                 .permitAll()
                                 .anyRequest().authenticated()
@@ -60,7 +67,10 @@ public class WebSecurityConfig {
                 .logout(AbstractHttpConfigurer::disable)
                 // JWT 필터 추가
                 .addFilterBefore(tokenAuthenticationFilter, UsernamePasswordAuthenticationFilter.class) // 시큐리티의 인증 필터보다 앞에 설정해서 인증을 더 할 필요없게 만듬 > 로그인 하기 전에
-        ;
+                .exceptionHandling(exception -> exception
+                        .authenticationEntryPoint(authenticationEntryPoint())
+                        .accessDeniedHandler(accessDeniedHandler())
+                );
 
         return http.build();
     }
@@ -73,6 +83,20 @@ public class WebSecurityConfig {
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public AccessDeniedHandler accessDeniedHandler() {
+        return (request, response, accessDeniedException) -> {
+            response.sendRedirect("/access-denied");
+        };
+    }
+
+    @Bean
+    public AuthenticationEntryPoint authenticationEntryPoint() {
+        return (request, response, accessDeniedException) -> {
+            response.sendRedirect("/access-denied");
+        };
     }
 
 }

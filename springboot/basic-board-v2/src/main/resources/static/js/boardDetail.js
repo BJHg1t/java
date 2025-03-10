@@ -33,10 +33,11 @@ let loadBoardDetail = () => {
             if (response.filePath && response.filePath.length > 0) {
                 let filePath = response.filePath;
                 $('#hiddenFilePath').val(filePath);
-                let fileName = filePath.substring(filePath.lastIndexOf('/') + 1); // 파일명 추출
+                let fileName = filePath.substring(filePath.lastIndexOf('\\') + 1); // 파일명 추출
+
                 let fileElement = `
                             <li>
-                                <a href="/api/board/file/download/${fileName}">${fileName}</a> <!-- 다운로드 링크 -->
+                                <a href="/api/board/file/download/${fileName}">${fileName}</a> <!-- 다운로드 링크, ajax가 아닌 a태그라서 헤더에 토큰 없어서 정책적으로 허용시켜야 함 --> 
                             </li>`;
                 $('#fileList').append(fileElement);
             } else {
