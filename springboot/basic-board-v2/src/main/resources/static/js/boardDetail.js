@@ -46,8 +46,8 @@ let loadBoardDetail = () => {
                 $('#fileList').append('<li>첨부된 파일이 없습니다.</li>');
             }
         },
-        error: (error) => [
+        error: (error) => {
             console.error('board detail error :: ', error)
-        ]
+        }
     })
 }
