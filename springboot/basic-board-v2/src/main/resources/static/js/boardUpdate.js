@@ -13,7 +13,7 @@ $(document).ready(() => {
     });
     loadBoardDetail();
 
-    $('#hiddenFileFlag').val(false);
+    $('#hiddenFileFlag').val(false); // 파일 변경이 있었는지 알려줌
     $('#file').on('change', (event) => {
         selectedFile = event.target.files[0]; // 선택된 파일을 변수에 저장
         $('#hiddenFileFlag').val(true);
