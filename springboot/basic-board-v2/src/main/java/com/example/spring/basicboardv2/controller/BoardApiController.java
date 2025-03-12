@@ -86,7 +86,9 @@ public class BoardApiController {
         boardService.updateArticle(id, title, content, file, fileChanged, filePath);
     }
 
-    @DeleteMapping("/{id}") // map을 쓰면 어떤 값을 넣던 다 삭제됨, DTO를 사용하면 특정값이 아니면 실행이 안됨
+    @DeleteMapping("/{id}")
+    /* map을 쓰면 어떤 값을 넣던 다 삭제됨, DTO를 사용하면 특정값이 아니면 실행이 안됨
+    보통 json을 넘기는 방식을 사용하진 않음, 직접 DB로 가서 삭제하는 편 */
     public void deleteArticle(@PathVariable Long id, @RequestBody BoardDeleteRequestDTO requestDTO) {
         boardService.deleteBoardById(id, requestDTO);
     }
