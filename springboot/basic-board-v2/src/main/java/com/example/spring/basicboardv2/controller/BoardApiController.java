@@ -1,5 +1,6 @@
 package com.example.spring.basicboardv2.controller;
 
+import com.example.spring.basicboardv2.dto.BoardDeleteRequestDTO;
 import com.example.spring.basicboardv2.dto.BoardDetailResponseDTO;
 import com.example.spring.basicboardv2.dto.BoardListResponseDTO;
 import com.example.spring.basicboardv2.model.Article;
@@ -9,7 +10,6 @@ import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -35,7 +35,6 @@ public class BoardApiController {
         boardService.saveArticle(userId, title, content, file);
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')") // 인가
     @GetMapping
     public BoardListResponseDTO getBoards(
             @RequestParam(name = "page", defaultValue = "1") int page,
@@ -71,6 +70,25 @@ public class BoardApiController {
                 .contentType(MediaType.APPLICATION_OCTET_STREAM)
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename*=UTF-8''" + encoded)
                 .body(resource);
+    }
+
+    @PutMapping
+    public void updateArticle(
+            @RequestParam("title") String title,
+            @RequestParam("content") String content,
+            @RequestParam("hiddenUserId") String userId,
+            @RequestParam("file") MultipartFile file,
+            @RequestParam("hiddenId") Long id,
+            @RequestParam("hiddenFileFlag") boolean fileChanged,
+            @RequestParam("hiddenFilePath") String filePath
+    ) {
+        System.out.println(title + " " + content + " " + userId + " " + id + " " + filePath);
+        boardService.updateArticle(id, title, content, file, fileChanged, filePath);
+    }
+
+    @DeleteMapping("/{id}") // map을 쓰면 어떤 값을 넣던 다 삭제됨, DTO를 사용하면 특정값이 아니면 실행이 안됨
+    public void deleteArticle(@PathVariable Long id, @RequestBody BoardDeleteRequestDTO requestDTO) {
+        boardService.deleteBoardById(id, requestDTO);
     }
 
 }

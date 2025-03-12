@@ -46,4 +46,18 @@
         WHERE
             id = #{id}
     </select>
+    
+    <update id="updateArticle" parameterType="Article">
+        UPDATE
+            article
+        SET
+            title = #{title}, content = #{content}, file_path = #{filePath}
+        WHERE
+            id = #{id}
+    </update>
+
+    <delete id="deleteBoardById" parameterType="Long">
+        DELETE FROM article
+        WHERE id = #{id}
+    </delete>
 </mapper>
