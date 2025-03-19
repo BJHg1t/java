@@ -11,6 +11,7 @@ services:
       - 9001:9001
     environment:
       - SPRING_DATASOURCE_URL=jdbc:mysql://polar-mysql:3306/catalog?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC&characterEncoding=UTF-8
+  
   polar-mysql:
     image: "mysql:latest"
     container_name: "polar-mysql"
