@@ -1,0 +1,22 @@
+services:
+  catalog-service:
+    build:
+      context: c:\Users\hi-pc-999\Desktop\java\polar-service\catalog-service
+      dockerfile: Dockerfile
+    depends_on:
+      - polar-mysql
+    image: "catalog-service"
+    container_name: "catalog-service"
+    ports:
+      - 9001:9001
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://polar-mysql:3306/catalog?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC&characterEncoding=UTF-8
+  polar-mysql:
+    image: "mysql:latest"
+    container_name: "polar-mysql"
+    ports:
+      - 3307:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=1234
+    volumes:
+      - ./mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
