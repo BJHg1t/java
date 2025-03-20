@@ -4,8 +4,8 @@ spring:
   application:
     name: order-service
   r2dbc:
+    url: ${SPRING_R2DBC_URL:r2dbc:mysql://localhost:3307/order}
     username: root
     password: 1234
-    url: ${SPRING_R2DBC_URL:r2dbc:mysql://localhost:3307/order}
 polar:
   catalog-service-uri: ${CATALOG_SERVICE_URL:http://localhost:9001}
