@@ -14,8 +14,8 @@ spring:
         packlabel-out-0:
           destination: order-dispatched
   rabbitmq:
-    host: polar-rabbitmq
+    host: ${SPRING_RABBITMQ_HOST:localhost}
     port: 5672
-    username: user
-    password: 1234
+    username: ${RABBITMQ_DEFAULT_USER:user}
+    password: ${RABBITMQ_DEFAULT_PASS:1234}
     connection-timeout: 5s
