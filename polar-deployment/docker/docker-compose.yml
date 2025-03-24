@@ -37,6 +37,15 @@ services:
     environment:
       - SPRING_R2DBC_URL=r2dbc:mysql://polar-mysql:3306/order
       - CATALOG_SERVICE_URL=http://catalog-service:9001
+
+  dispatcher-service:
+    build:
+      context: c:\Users\hi-pc-999\Desktop\java\polar-service\dispatcher-service
+      dockerfile: Dockerfile
+    image: "dispatcher-service"
+    container_name: "dispatcher-service"
+    ports:
+      - 9003:9003
       
   polar-mysql:
     image: "mysql:latest"
