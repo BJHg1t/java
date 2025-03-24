@@ -37,6 +37,9 @@ services:
     environment:
       - SPRING_R2DBC_URL=r2dbc:mysql://polar-mysql:3306/order
       - CATALOG_SERVICE_URL=http://catalog-service:9001
+      - SPRING_RABBITMQ_HOST=polar-rabbitmq
+      - RABBITMQ_DEFAULT_USER=user
+      - RABBITMQ_DEFAULT_PASS=1234
 
   dispatcher-service:
     build:
