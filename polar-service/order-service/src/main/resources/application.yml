@@ -7,5 +7,26 @@ spring:
     url: ${SPRING_R2DBC_URL:r2dbc:mysql://localhost:3307/order}
     username: root
     password: 1234
+  cloud:
+    function:
+      definition: dispatchOrder
+    stream:
+      bindings:
+        dispatchOrder-in-0:
+          destination: order-dispatched
+          group: ${spring.application.name}
+        acceptOrder-out-0:
+          destination: order-accepted
+      rabbit:
+        bindings:
+          acceptOrder-out-0:
+            producer:
+              transacted: true
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: user
+    password: 1234
+    connection-timeout: 5s
 polar:
   catalog-service-uri: ${CATALOG_SERVICE_URL:http://localhost:9001}
