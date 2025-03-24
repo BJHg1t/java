@@ -37,7 +37,7 @@ public class BookService {
         return bookRepository.findByIsbn(isbn)
                 .map(
                         existingBook -> {
-                            Book.builder()
+                            Book bootToUpdate = Book.builder()
                                     .id(existingBook.id())
                                     .isbn(isbn)
                                     .title(book.title())
@@ -47,7 +47,7 @@ public class BookService {
                                     .lastModifiedAt(existingBook.lastModifiedAt())
                                     .version(existingBook.version())
                                     .build();
-                            return bookRepository.save(existingBook);
+                            return bookRepository.save(bootToUpdate);
                         }
                 ).orElseGet(() -> bookRepository.save(book)); // 찾은 책이 없을 때
     }
