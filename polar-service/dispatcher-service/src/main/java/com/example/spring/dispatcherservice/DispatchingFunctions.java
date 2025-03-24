@@ -28,7 +28,7 @@ public class DispatchingFunctions {
         };
     }
 
-    @Bean
+    @Bean // stream 단위로 움직이기 때문에 flux 사용 > 한 번에 여러 data 들어오고 나갈 수 있다.
     public Function<Flux<Long>, Flux<OrderAcceptedMessage>> label() {
         return orderFlux -> orderFlux.map( orderId -> {
             log.info("The order with id {} is labeled.", orderId);
