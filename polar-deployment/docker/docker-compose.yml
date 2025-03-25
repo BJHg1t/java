@@ -56,20 +56,16 @@ services:
 
   auth-service:
   build:
-    context: c:\Users\hi-pc-999\Desktop\java\polar-service\order-service
+    context: c:\Users\hi-pc-999\Desktop\java\polar-service\auth-service
     dockerfile: Dockerfile
   depends_on:
     - polar-mysql
-  image: "order-service"
-  container_name: "order-service"
+  image: "auth-service"
+  container_name: "auth-service"
   ports:
-    - 9002:9002
+    - 9004:9004
   environment:
-    - SPRING_R2DBC_URL=r2dbc:mysql://polar-mysql:3306/order
-    - CATALOG_SERVICE_URL=http://catalog-service:9001
-    - SPRING_RABBITMQ_HOST=polar-rabbitmq
-    - RABBITMQ_DEFAULT_USER=user
-    - RABBITMQ_DEFAULT_PASS=1234
+    - SPRING_DATASOURCE_URL=jdbc:mysql://polar-mysql:3306/auth?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC&characterEncoding=UTF-8
       
   polar-mysql:
     image: "mysql:latest"
@@ -88,7 +84,6 @@ services:
       - 5672:5672
       - 15672:15672
     environment:
-      - SPRING_RABBITMQ_HOST=polar-rabbitmq
       - RABBITMQ_DEFAULT_USER=user
       - RABBITMQ_DEFAULT_PASS=1234
     volumes:
