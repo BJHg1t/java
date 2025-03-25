@@ -53,7 +53,7 @@ public class PreGatewayFilter extends AbstractGatewayFilterFactory<PreGatewayFil
                         log.error("token filter error: {}", e.getMessage());
                         exchange.getResponse().setStatusCode(INTERNAL_SERVER_ERROR);
                         return exchange.getResponse().setComplete();
-                    })
+                    });
         };
     }
 
