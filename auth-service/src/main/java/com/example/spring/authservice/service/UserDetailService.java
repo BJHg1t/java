@@ -1,4 +1,4 @@
-package com.example.spring.authservice;
+package com.example.spring.authservice.service;
 
 import com.example.spring.authservice.config.security.CustomUserDetails;
 import com.example.spring.authservice.mapper.UserMapper;
