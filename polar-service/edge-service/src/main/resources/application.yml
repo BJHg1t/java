@@ -24,6 +24,15 @@ spring:
               args:
                 name: orderCircuitBreaker
                 fallbackUri: forward:/service-fallback
+        - id: auth-service
+          uri: ${AUTH_SERVICE_URL:http://localhost:9004}/auths
+          predicates:
+            - Path=/auths/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: authCircuitBreaker
+                fallbackUri: forward:/service-fallback
 resilience4j:
   circuitbreaker:
     configs:
@@ -36,3 +45,5 @@ resilience4j:
       default: # 모든 시간 제한에 대한 기본 설정
         timeout-duration:
           seconds: 5
+polar:
+  auth-service-url: ${AUTH_SERVICE_URL:http://localhost:9004}
