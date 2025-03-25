@@ -11,3 +11,4 @@ FROM container-registry.oracle.com/graalvm/jdk:21
 WORKDIR /workspace
 COPY --from=builder /workspace/build/libs/*.jar app.jar
 ENTRYPOINT ["java", "-jar", "app.jar"]
+#test
