@@ -11,6 +11,7 @@ spring:
           predicates:
             - Path=/books/**
           filters:
+            - name: PreGatewayFilter
             - name: CircuitBreaker # 서비스에 장애가 생겼을 때 격리시키고 그에 맞는 응답을 주게 함
               args:
                 name: catalogCircuitBreaker
@@ -20,6 +21,7 @@ spring:
           predicates:
             - Path=/orders/**
           filters:
+            - name: PreGatewayFilter
             - name: CircuitBreaker
               args:
                 name: orderCircuitBreaker
