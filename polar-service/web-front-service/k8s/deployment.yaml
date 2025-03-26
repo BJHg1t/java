@@ -1,26 +1,29 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: $title$
+  name: web-front-service
   labels:
-    app: $title$
+    app: web-front-service
 spec:
-  replicas: $1$
+  replicas: 1
   selector:
     matchLabels:
-      app: $title$
+      app: web-front-service
   template:
     metadata:
-      name: $title$
       labels:
-        app: $title$
+        app: web-front-service
     spec:
       containers:
-        - name: $title$
-          image: $nginx$
+        - name: web-front-service
+          image: web-front-service
           imagePullPolicy: IfNotPresent
+          lifecycle:
+            preStop:
+              exec:
+                command: [ "sh", "-c", "sleep 5" ]
           ports:
-            - containerPort: $80$
-              protocol: $TCP$
-      restartPolicy: Always
-      $END$
+            - containerPort: 9005
+          env:
+            - name: EDGE_SERVICE_URL
+              value: http://edge-service:80

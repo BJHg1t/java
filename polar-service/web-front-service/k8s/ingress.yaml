@@ -1,19 +1,16 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: $title$
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+  name: polar-ingress
 spec:
   ingressClassName: nginx
   rules:
     - http:
         paths:
-          - path: /api
+          - path: /
             pathType: Prefix
             backend:
               service:
-                name: $title$
+                name: web-front-service
                 port:
-                  number: $80$
-$END$
+                  number: 80
