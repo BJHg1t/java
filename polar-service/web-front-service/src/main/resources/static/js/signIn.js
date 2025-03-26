@@ -6,7 +6,7 @@ $(document).ready(() => {
         let password = $('#password').val();
 
         let formData = {
-            username : userId,
+            userId : userId,
             password : password
         }
 
@@ -18,9 +18,9 @@ $(document).ready(() => {
             dataType: 'json', // 서버에서 받을 데이터의 타입
             success: (response) => {
                 console.log(response);
-                alert('로그인이 성공했습니다.');
+                alert(response.message);
                 localStorage.setItem("accessToken", response.token)
-                window.location.href = '/'
+                window.location.href = response.url;
             },
             error: (error) => {
                 console.log('오류발생 : ', error);
