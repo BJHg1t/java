@@ -2,6 +2,7 @@ package com.example.spring.webfrontservice.controller;
 
 import com.example.spring.webfrontservice.dto.CreateCatalogRequestDTO;
 import com.example.spring.webfrontservice.dto.CreateCatalogResponseDTO;
+import com.example.spring.webfrontservice.dto.ReadCatalogResponseDTO;
 import com.example.spring.webfrontservice.service.CatalogService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +22,11 @@ public class HomeApiController {
             @RequestBody CreateCatalogRequestDTO createCatalogRequestDTO
     ) {
         return catalogService.createCatalog(accessToken, createCatalogRequestDTO);
+    }
+
+    @GetMapping
+    public ReadCatalogResponseDTO[] readCatalog(@RequestHeader(value = AUTHORIZATION, required = false) String accessToken) {
+        return catalogService.readCatalog(accessToken);
     }
 
 }
