@@ -67,7 +67,18 @@ services:
       - 9004:9004
     environment:
       - SPRING_DATASOURCE_URL=jdbc:mysql://polar-mysql:3306/auth?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC&characterEncoding=UTF-8
-      
+  
+  web-front-service:
+    build:
+      context: c:\Users\hi-pc-999\Desktop\java\polar-service\web-front-service
+      dockerfile: Dockerfile
+    image: "web-front-service"
+    container_name: "web-front-service"
+    ports:
+      - 9005:9005
+    environment:
+      - EDGE_SERVICE_URL=http://edge-service:9000
+    
   polar-mysql:
     image: "mysql:latest"
     container_name: "polar-mysql"
