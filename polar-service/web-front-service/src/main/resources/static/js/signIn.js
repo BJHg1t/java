@@ -19,7 +19,7 @@ $(document).ready(() => {
             success: (response) => {
                 console.log(response);
                 alert(response.message);
-                localStorage.setItem("accessToken", response.token)
+                localStorage.setItem("accessToken", response.accessToken)
                 window.location.href = response.url;
             },
             error: (error) => {

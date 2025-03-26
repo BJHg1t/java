@@ -1,6 +1,5 @@
 package com.example.spring.authservice.controller;
 
-import com.example.spring.authservice.ClaimsRequestDTO;
 import com.example.spring.authservice.dto.*;
 import com.example.spring.authservice.service.TokenService;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/auths")
 public class TokenController {
 
-    private TokenService tokenService;
+    private final TokenService tokenService;
 
     @PostMapping("/refresh")
     public RefreshTokenResponseDTO refreshToken(@RequestBody RefreshTokenRequestDTO refreshTokenRequestDTO) {

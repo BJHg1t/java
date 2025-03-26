@@ -56,17 +56,17 @@ services:
       - RABBITMQ_DEFAULT_PASS=1234
 
   auth-service:
-  build:
-    context: c:\Users\hi-pc-999\Desktop\java\polar-service\auth-service
-    dockerfile: Dockerfile
-  depends_on:
-    - polar-mysql
-  image: "auth-service"
-  container_name: "auth-service"
-  ports:
-    - 9004:9004
-  environment:
-    - SPRING_DATASOURCE_URL=jdbc:mysql://polar-mysql:3306/auth?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC&characterEncoding=UTF-8
+    build:
+      context: c:\Users\hi-pc-999\Desktop\java\polar-service\auth-service
+      dockerfile: Dockerfile
+    depends_on:
+      - polar-mysql
+    image: "auth-service"
+    container_name: "auth-service"
+    ports:
+      - 9004:9004
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://polar-mysql:3306/auth?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC&characterEncoding=UTF-8
       
   polar-mysql:
     image: "mysql:latest"
