@@ -27,6 +27,6 @@ spring:
     port: 5672
     username: user
     password: 1234
-    connection-timeout: 5s
+    connection-timeout: 30s
 polar:
   catalog-service-uri: ${CATALOG_SERVICE_URL:http://localhost:9001}

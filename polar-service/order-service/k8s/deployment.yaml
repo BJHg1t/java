@@ -29,6 +29,6 @@ spec:
             - name: SPRING_R2DBC_URL
               value: r2dbc:mysql://polar-mysql:3306/order
             - name: CATALOG_SERVICE_URL
-              value: http://catalog-service:9001
+              value: http://catalog-service:80
             - name: SPRING_RABBITMQ_HOST
               value: polar-rabbitmq
